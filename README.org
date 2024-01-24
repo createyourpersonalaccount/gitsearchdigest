@@ -1,0 +1,19 @@
+* gitsearchdigest
+
+Suppose you have the files FOO and BAR and a git repository, and you'd like to know the last appearance these files made in the repository.
+
+Assuming FOO and BAR are under the current directory (which is not the git repository), the task can be accomplished like so:
+
+#+begin_src sh
+  printf "FOO\0BAR\0" | gitsearchdigest -C /path/to/gitrepo
+#+end_src
+
+This interface allows us to use it e.g. like this:
+
+#+begin_src sh
+  tar xvf mysterious-xyzlib-bundle.tar.xz
+  cd mysterious-bundle
+  find . -type f -print0 | gitsearchdigest -C /path/to/xyzlibrepo
+#+end_src
+
+to search for files in the xyzlib git repository from a mysterious xyzlib bundle.
